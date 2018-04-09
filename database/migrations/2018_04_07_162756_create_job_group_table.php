@@ -2,8 +2,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\JobGroup;
 
-class JobGroup extends Migration
+class CreateJobGroupTable extends Migration
 {
 
     /**
@@ -15,12 +16,12 @@ class JobGroup extends Migration
     {
         Schema::create('job_group', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('name');
+            $table->string('name', 3);
             $table->float('pay_rate', 3, 2);
         });
         
-        // TODO : Seeding the database with the twp job groups
-        
+        JobGroup::create(['name' => 'A', 'pay_rate' => 20]);
+        JobGroup::create(['name' => 'B', 'pay_rate' => 30]);
 
     }
 

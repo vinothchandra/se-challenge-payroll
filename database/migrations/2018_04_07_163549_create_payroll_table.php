@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Payroll;
 
-class CreateUsersTable extends Migration
+class CreatePayrollTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +14,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('payroll', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->integer('report_id');
+            $table->integer('employee_id');
+            $table->integer('job_group_id')->references('id')->on('job_group');
+            $table->date('date');
+            $table->float('hours',2,2);          
         });
     }
 
@@ -30,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::drop('payroll');
     }
 }
