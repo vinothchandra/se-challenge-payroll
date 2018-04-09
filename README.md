@@ -248,4 +248,5 @@ Locations for the view files[https://github.com/vinothchandra/se-challenge-payro
 
 The first two columns have links in them. If you click on a report id column you see a filtered list of all salary paid in that report. Also clicking on the eployee id shows all entries for the employee.
 
-The data could be sorted within the webpage by using the column headers.
+
+The data could be sorted within the webpage by clicking on the column headers.

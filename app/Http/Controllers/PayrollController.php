@@ -19,27 +19,33 @@ class PayrollController extends Controller
 {
 
     /**
-     * Payroll creation logic
+     * Starting point for payroll creation and validation logic.
+     *
      * @param Request $request
-     *            
+     *
      */
     public function store(Request $request)
     {
         $file = $request->file('file-upload');
         $this->validatePayrollForm($request, $file);
         DB::beginTransaction();
-        try{
+        try {
             $reportId = $this->processForm($file);
-        } catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
             return view("index")->with('message', $e->getMessage())
-            ->with('reports', Report::getReports())->with('all_reports', true);
+                ->with('reports', Report::getReports())
+                ->with('all_reports', true);
         }
         DB::commit();
-        return redirect("/report/" );
+        return redirect("/report/");
     }
 
     /**
+     *  Method to parse the form.
+     * @param Request $request
+     * @param  $file
+     * @throws BadRequestHttpException
      */
     private function validatePayrollForm(Request $request, $file)
     {
@@ -49,14 +55,14 @@ class PayrollController extends Controller
     }
 
     /**
-     * 
+     * Parsing the file and updating the database.
      * @param Request $request
      */
     private function processForm($file)
     {
         $payrollArray = array_map('str_getcsv', file($file));
         $reportId = array_pop($payrollArray)[1];
-            
+        
         // Converting the data into an array of associated arrays so that it is easier to process.
         array_walk($payrollArray, function (&$a) use ($payrollArray) {
             $a = array_combine($payrollArray[0], $a);

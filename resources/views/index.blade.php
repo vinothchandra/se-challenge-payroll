@@ -1,10 +1,8 @@
 @extends('layouts.app') @section('content')
-<!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 	<div class="container">
 		<h3>Upload Report</h3>
 
-		<!-- Example row of columns -->
 		<div class="row">
 			<div class="col-md-12">
 				<form method="POST" action="/payroll" enctype="multipart/form-data" id="payroll-form">
