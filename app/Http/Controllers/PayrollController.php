@@ -31,9 +31,14 @@ class PayrollController extends Controller
         DB::beginTransaction();
         try {
             $reportId = $this->processForm($file);
-        } catch (Exception $e) {
+        } catch (BadRequestHttpException $e) {
             DB::rollBack();
             return view("index")->with('message', $e->getMessage())
+                ->with('reports', Report::getReports())
+                ->with('all_reports', true);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return view("index")->with('message', 'We are tracking this problem. We appologize for the inconvinience.')
                 ->with('reports', Report::getReports())
                 ->with('all_reports', true);
         }

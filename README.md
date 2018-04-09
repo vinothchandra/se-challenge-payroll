@@ -212,11 +212,31 @@ sudo apt-get update
 
 sudo apt-get install php7.1 php7.1-mcrypt php7.1-xml php7.1-gd php7.1-opcache php7.1-mbstring php7.1-zip php7.1-pgsql
 
-### Run the application 
-php artisan serve
+### Steps to run the application 
 
+Since Homebrew makes installation easier I have added the instruction for running this is Mac OS. 
 
+1) Installing php
+    I have created the bundle with the vendor directory and the environment file. This way the application could be run without much hazzle.
+```
+brew install php
+echo 'export PATH="/usr/local/opt/php/bin/:$PATH"' >> ~/.bash_profile
+echo 'export PATH="/usr/local/opt/php/sbin/:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+2) Installing Postgres and setup the database.
+```
+brew install postgres
+brew services start postgresql
+createdb `whoami`
+psql -c "create database wave"
+psql -c "create schema payroll;"
+psql -c "grant create on schema public to public;"
+psql -c "create role serviceaccount with password 'unique_password' login createdb"
+psql -c "grant all on database wave to serviceaccount"
+```
 
+The environment file is configured to use to the password create using above lines. If a different account is needed then it could be manually created and the .env file could be updated as needed
 ### Design and thought process.
 Design choices : Initially I thought about developing this usign python but I thought it would be better to develop this in a language in which I have developed web application in the past.
 

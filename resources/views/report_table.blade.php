@@ -12,7 +12,7 @@
           <tr>
 			<td> <a href= "/report/{{$report->report_id}}" class="glyphicon glyphicon-link"> {{$report->report_id}} </a> </td>
 			<td> <a href= "/employee/{{$report->employee_id}}" class="glyphicon glyphicon-link"> {{$report->employee_id}} </a> </td>			      	  	
-			<td> {{$report->period_start}} - {{$report->period_start}}  </td>
+			<td> {{$report->period_start}} - {{$report->period_end}}  </td>
 			<td> {{$report->sum}} </td>
           </tr>
          @endforeach
