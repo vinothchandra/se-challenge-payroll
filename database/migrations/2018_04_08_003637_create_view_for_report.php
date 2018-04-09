@@ -14,7 +14,7 @@ class CreateViewForReport extends Migration
      */
     public function up()
     {
-        DB::Raw("
+        DB::statement("
             create  view payroll_report as 
                 (
                     select  
@@ -44,6 +44,6 @@ class CreateViewForReport extends Migration
      */
     public function down()
     {
-        //
+        DB::statement(" drop view payroll_report");
     }
 }
