@@ -226,10 +226,10 @@ These migrations are located at database/migrations/ [https://github.com/vinothc
 
 These will be executed by the timestamp order in which they are created and these timestamps are part of the file name.
 This migration creates the view which responsible for aggregating data based on the pay period
-[[https://github.com/vinothchandra/se-challenge-payroll/blob/master/database/migrations/2018_04_08_003637_create_view_for_report.php]].
+[https://github.com/vinothchandra/se-challenge-payroll/blob/master/database/migrations/2018_04_08_003637_create_view_for_report.php]
 
 **Controller**
-The PayrollController has the logic for parsing the files [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/Http/Controllers/PayrollController.php].
+The PayrollController has the logic for parsing the files [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/Http/Controllers/PayrollController.php] 
 
 **Model**
 The models are present under [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/]
@@ -244,7 +244,7 @@ All the datatable in the application is rendered in the report_table.blade.php [
 
 Locations for the view files[https://github.com/vinothchandra/se-challenge-payroll/tree/master/resources/views]
 [https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/layouts/app.blade.php] Maintains the layout of the web application.
-[[https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/index.blade.php]]  contains the content for the home page. 
+[https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/index.blade.php] contains the content for the home page. 
 
 The first two columns have links in them. If you click on a report id column you see a filtered list of all salary paid in that report. Also clicking on the eployee id shows all entries for the employee.
 
