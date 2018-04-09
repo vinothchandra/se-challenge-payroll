@@ -235,7 +235,7 @@ The PayrollController has the logic for parsing the files [https://github.com/vi
 The models are present under [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/]
 The most important modal is [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/Report.php] .
 This handles the logic for extracting the data for the reports.
-
+**View**
 The way it is rendered is handled through the view layer. These files are located under the resources directory.
 
 The blade files can include other blades there by the views can reused.
