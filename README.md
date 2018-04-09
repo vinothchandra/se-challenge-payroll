@@ -222,3 +222,9 @@ Evaluation of your submission will be based on the following criteria.
    they explained?
 1. Did you separate any concerns in your application? Why or why not?
 1. Does your solution use appropriate data types for the problem as described?
+
+## How to build and run
+## Things I like about my design.
+Design choices : Initially I thought about developing this usign python but I thought it would be better to develop this in a language in which I have developed web application in the past.
+
+The design here emphasizes separating the logic into different layers using MVC pattern. Pushed the report generation to the  database. layer so that the UI can present data in different formats to help the user to easily analyze the data.
