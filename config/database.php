@@ -64,7 +64,7 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
-            'schema' => 'payroll',
+            //'schema' => 'payroll',
             'sslmode' => 'prefer',
         ],
 
