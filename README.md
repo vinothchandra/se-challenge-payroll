@@ -205,19 +205,10 @@ Evaluation of your submission will be based on the following criteria.
 
 ## How to build and run
 
-In order to simplify the setup I have added the connection string of the cloud postgres instance which is used as the datastore.
-
-### Install PHP
-sudo apt-get update
-
-sudo apt-get install php7.1 php7.1-mcrypt php7.1-xml php7.1-gd php7.1-opcache php7.1-mbstring php7.1-zip php7.1-pgsql
-
-### Steps to run the application 
-
 Since Homebrew makes installation easier I have added the instruction for running this is Mac OS. 
 
 1) Installing php
-    I have created the bundle with the vendor directory and the environment file. This way the application could be run without much hazzle.
+    I have created the bundle with the vendor directory and the environment file. This way the application could be run without much hassle.
 ```
 brew install php
 echo 'export PATH="/usr/local/opt/php/bin/:$PATH"' >> ~/.bash_profile
@@ -236,37 +227,41 @@ psql -c "create role serviceaccount with password 'unique_password' login create
 psql -c "grant all on database wave to serviceaccount"
 ```
 
-The environment file is configured to use to the password create using above lines. If a different account is needed then it could be manually created and the .env file could be updated as needed
+The environment file is configured to use the password created using above lines. If a different account is needed then it could be manually created and the .env file could be updated as needed
 ### Design and thought process.
-Design choices : Initially I thought about developing this usign python but I thought it would be better to develop this in a language in which I have developed web application in the past.
+Design choices: Initially I thought about developing this using python but I thought it would be better to develop this in a language in which I have developed web applications in the past.
 
-The design here emphasizes separating the logic into different layers using MVC pattern. Pushed the report generation to the  database. layer so that the UI can present data in different formats to help the user to easily analyze the data.
-Also the database migration pattern takes care of handling schema changes in a unfied way. 
+The design here emphasizes separating the logic into different layers using MVC pattern. Pushed the report generation to the database. layer so that the UI can present data in different formats to help the user to easily analyze the data.
+Also, the database migration pattern takes care of handling schema changes in a unified way. 
 These migrations are located at database/migrations/ [https://github.com/vinothchandra/se-challenge-payroll/tree/master/database/migrations]
 
 These will be executed by the timestamp order in which they are created and these timestamps are part of the file name.
 This migration creates the view which responsible for aggregating data based on the pay period
+
 [https://github.com/vinothchandra/se-challenge-payroll/blob/master/database/migrations/2018_04_08_003637_create_view_for_report.php]
 
 **Controller**
 The PayrollController has the logic for parsing the files [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/Http/Controllers/PayrollController.php] 
 
+Routes for the code is defined in [https://github.com/vinothchandra/se-challenge-payroll/blob/master/routes/web.php]
+
 **Model**
 The models are present under [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/]
-The most important modal is [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/Report.php] .
+The most important modal is [https://github.com/vinothchandra/se-challenge-payroll/blob/master/app/Report.php].
 This handles the logic for extracting the data for the reports.
+
 **View**
 The way it is rendered is handled through the view layer. These files are located under the resources directory.
 
-The blade files can include other blades there by the views can reused.
+The blade files can include other blades there by the views can be reused.
 
-All the datatable in the application is rendered in the report_table.blade.php [https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/report_table.blade.php]
+All the data tables in the application are rendered using the report_table.blade.php [https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/report_table.blade.php]
 
 Locations for the view files[https://github.com/vinothchandra/se-challenge-payroll/tree/master/resources/views]
-[https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/layouts/app.blade.php] Maintains the layout of the web application.
-[https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/index.blade.php] contains the content for the home page. 
 
-The first two columns have links in them. If you click on a report id column you see a filtered list of all salary paid in that report. Also clicking on the eployee id shows all entries for the employee.
+The layout of the web application is defined in the blade : [https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/layouts/app.blade.php] 
+The homepage is defined here : [https://github.com/vinothchandra/se-challenge-payroll/blob/master/resources/views/index.blade.php] 
 
+The first two columns have links in them. If you click on a report id we can see the filtered list of all salary paid in that report. Also clicking on the employee id shows all entries for the employee.
 
 The data could be sorted within the webpage by clicking on the column headers.
