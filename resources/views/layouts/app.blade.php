@@ -7,7 +7,15 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://s3.amazonaws.com/wave-buoyant/public/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://s3.amazonaws.com/wave-buoyant/public/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://s3.amazonaws.com/wave-buoyant/public/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="mask-icon" href="https://s3.amazonaws.com/wave-buoyant/public/favicon/safari-pinned-tab.svg" color="#007f92">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-square150x150logo" content="https://s3.amazonaws.com/wave-buoyant/public/favicon/mstile-150x150.png">
+    <meta name="msapplication-square310x310logo" content="https://s3.amazonaws.com/wave-buoyant/public/favicon/mstile-310x310.png">
+    <meta name="msapplication-square70x70logo" content="https://s3.amazonaws.com/wave-buoyant/public/favicon/mstile-70x70.png">
 
     <title>Payroll </title>
 
@@ -16,7 +24,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
   </head>
 
   <body  style="
@@ -45,11 +53,6 @@
 
     @yield('content')
 
- {{--    <hr>
-    <footer>
-        <p>&copy; 2016 Company, Inc.</p>
-    </footer>
- --}}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -7,6 +7,7 @@ use App\Payroll;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Report;
+use App\JobGroup;
 use Exception;
 
 /**
@@ -37,6 +38,8 @@ class PayrollController extends Controller
                 ->with('reports', Report::getReports())
                 ->with('all_reports', true);
         } catch (Exception $e) {
+            print_r($e);
+            exit();
             DB::rollBack();
             return view("index")->with('message', 'We are tracking this problem. We appologize for the inconvinience.')
                 ->with('reports', Report::getReports())
@@ -68,6 +71,10 @@ class PayrollController extends Controller
         $payrollArray = array_map('str_getcsv', file($file));
         $reportId = array_pop($payrollArray)[1];
         
+        $jobGroups = [];
+        foreach (JobGroup::all() as $value) {
+            $jobGroups[$value->name] = $value->id;
+        }
         // Converting the data into an array of associated arrays so that it is easier to process.
         array_walk($payrollArray, function (&$a) use ($payrollArray) {
             $a = array_combine($payrollArray[0], $a);
@@ -85,7 +92,7 @@ class PayrollController extends Controller
             Payroll::create([
                 'report_id' => $reportId,
                 'employee_id' => $row['employee id'],
-                'job_group_id' => 1,
+                'job_group_id' => $jobGroups[$row['job group']],
                 'date' => Carbon::createFromFormat('d/m/Y', $row['date'])->toDateTimeString(),
                 'hours' => $row['hours worked']
             ]);

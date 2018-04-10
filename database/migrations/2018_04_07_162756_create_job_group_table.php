@@ -16,7 +16,7 @@ class CreateJobGroupTable extends Migration
     {
         Schema::create('job_group', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 3);
+            $table->string('name', 3)->unique();
             $table->float('pay_rate', 3, 2);
         });
         

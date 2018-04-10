@@ -23,13 +23,13 @@ Route::post('/payroll', 'PayrollController@store');
 
 // Routes for resndering the reports.
 Route::get('/employee/{employee_id}', function ($employeeId) {
-    return view('index')->with('reports', Report::getReports(null, $employeeId));
+    return view('report')->with('reports', Report::getReports(null, $employeeId));
 });
 
 Route::get('/report', function () {
-    return view('index')->with('reports', Report::getReports(null, null));
+    return view('report')->with('reports', Report::getReports(null, null));
 });
 
 Route::get('/report/{reportid?}', function ($reportId) {
-    return view('index')->with('reports', Report::getReports($reportId, null));
+    return view('report')->with('reports', Report::getReports($reportId, null));
 });
