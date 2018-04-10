@@ -225,6 +225,7 @@ psql -c "create schema payroll;"
 psql -c "grant create on schema public to public;"
 psql -c "create role serviceaccount with password 'unique_password' login createdb"
 psql -c "grant all on database wave to serviceaccount"
+php artisan migrate
 ```
 
 The environment file is configured to use the password created using above lines. If a different account is needed then it could be manually created and the .env file could be updated as needed
